@@ -1,10 +1,12 @@
 let favoriteMovies = [];
+// global variable to store Favorite Movies 
 
 
 // Check if the current page is favmovie.html and render favorite movies
 if (window.location.pathname.includes('/favmovie.html')) {
   renderFavoriteMovies();
 }
+// search function
 function performSearch() {
   const apiKey = "6dd38eca";
   const movieTitle = document.getElementById("searchInput").value.trim();
@@ -50,7 +52,7 @@ function performSearch() {
       console.error("Error fetching data:", error);
     });
 }
-
+// function to create movie card  
 function createMovieCard(movie) {
   const movieCard = document.createElement("div");
   movieCard.classList.add("movie-card");
@@ -58,7 +60,7 @@ function createMovieCard(movie) {
   const moviePoster = document.createElement("img");
   moviePoster.src = movie.Poster;
   moviePoster.alt = movie.Title;
-  moviePoster.dataset.imdbid = movie.imdbID; // Set dataset attribute for imdbID
+  moviePoster.dataset.imdbid = movie.imdbID; 
   movieCard.appendChild(moviePoster);
 
   const movieTitle = document.createElement("h3");
@@ -83,7 +85,7 @@ function addToFavorites(movie) {
       localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
   }
 }
-
+// getting detailed movie info in movieDesc page
 function renderMovieDetails(movie) {
   const movieDetailsContainer = document.getElementById("movieDetails");
   movieDetailsContainer.innerHTML = "";
@@ -118,7 +120,6 @@ function renderFavoriteMovies() {
       favoriteMovies = JSON.parse(storedFavoriteMovies);
       const favoriteMoviesContainer = document.getElementById("favoriteMoviesList");
       favoriteMoviesContainer.innerHTML = "";
-
       favoriteMovies.forEach((movie, index) => {
           const listItem = document.createElement("li");
           listItem.innerHTML = `
