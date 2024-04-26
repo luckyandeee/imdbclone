@@ -19,7 +19,7 @@ function performSearch() {
   const moviesList = document.getElementById("moviesList");
   moviesList.innerHTML = "";
 
-  fetch(`http://www.omdbapi.com/?s=${movieTitle}&apikey=${apiKey}`)
+  fetch(`https://www.omdbapi.com/?s=${movieTitle}&apikey=${apiKey}`)
     .then((response) => response.json())
     .then((data) => {
       moviesList.innerHTML = "";
