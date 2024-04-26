@@ -113,32 +113,48 @@ movieDetailsContainer.innerHTML = movieContainer;
 }
 // Render favorite movies
 function renderFavoriteMovies() {
-    const storedFavoriteMovies = localStorage.getItem('favoriteMovies');
-    if (storedFavoriteMovies) {
+  const storedFavoriteMovies = localStorage.getItem('favoriteMovies');
+  if (storedFavoriteMovies) {
       favoriteMovies = JSON.parse(storedFavoriteMovies);
       const favoriteMoviesContainer = document.getElementById("favoriteMoviesList");
       favoriteMoviesContainer.innerHTML = "";
-  
-      favoriteMovies.forEach(movie => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-          <div class="listEleMovie">
-            <img src="${movie.Poster}">
-            <div class="details">
-              <h2>${movie.Title}</h2>
-              <p>(${movie.Year})</p>
-            </div>
-          </div>`;
-        
-        // Add event listener to each movie item
-        listItem.addEventListener("click", function() {
-            // Redirect to movie details page with IMDb ID
-            window.location.href = `moviedesc.html?imdbID=${movie.imdbID}`;
-        });
-        
-        favoriteMoviesContainer.appendChild(listItem);
+
+      favoriteMovies.forEach((movie, index) => {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `
+              <div class="listEleMovie">
+                  <img src="${movie.Poster}">
+                  <div class="details">
+                      <h2>${movie.Title}</h2>
+                      <p>(${movie.Year})</p>
+                      <button class="remove-btn" data-index="${index}">Remove</button>
+                  </div>
+              </div>`;
+          
+          // Add event listener to each movie item
+          listItem.addEventListener("click", function() {
+              // Redirect to movie details page with IMDb ID
+              window.location.href = `moviedesc.html?imdbID=${movie.imdbID}`;
+          });
+
+          // Add event listener to the remove button
+          const removeButton = listItem.querySelector('.remove-btn');
+          removeButton.addEventListener("click", function(event) {
+              event.stopPropagation();
+              removeFavoriteMovie(index);
+              renderFavoriteMovies(); 
+          });
+
+          favoriteMoviesContainer.appendChild(listItem);
       });
-    }
+  }
 }
+
+// Remove favorite movie from the list
+function removeFavoriteMovie(index) {
+  favoriteMovies.splice(index, 1);
+  localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
+}
+
 
   
