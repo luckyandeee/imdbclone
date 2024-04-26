@@ -1,7 +1,5 @@
-// global element to store Favourite Movies 
-let favoriteMovies = []; 
+let favoriteMovies = [];
 
-// if elseif condition to check the location of page to call required functions.
 if (window.location.pathname === "/index.html") {
   document
     .getElementById("searchGroup")
@@ -9,16 +7,14 @@ if (window.location.pathname === "/index.html") {
       event.preventDefault();
       performSearch();
     });
-}else if (window.location.pathname === '/favmovie.html') {
-    renderFavoriteMovies(); 
-    // here it calls for fav Movie function which renders the fav movies from the list Fav movies array which are stored in local storage 
-  }else{
-    const header = document.querySelector('header');
-    header.style.background="rgba(245, 197, 25, 0.5)";
+}
+// Check if the current page is favmovie.html and render favorite movies
+if (window.location.pathname === '/favmovie.html') {
+    renderFavoriteMovies();
   }
-// fetch to call the data using API 
+
 function performSearch() {
-  const apiKey = "6dd38eca"; 
+  const apiKey = "6dd38eca";
   const movieTitle = document.getElementById("searchInput").value.trim();
   const moviesList = document.getElementById("moviesList");
   moviesList.innerHTML = "";
@@ -49,7 +45,6 @@ function performSearch() {
           });
         });
       } else {
-        // if there are no movies with given string
         const noMoviesImage = document.createElement("img");
         const noMovieHeading = document.createElement("h1");
         noMovieHeading.textContent = "No Movies Found";
@@ -63,7 +58,7 @@ function performSearch() {
       console.error("Error fetching data:", error);
     });
 }
-// the movie card is created here 
+
 function createMovieCard(movie) {
   const movieCard = document.createElement("div");
   movieCard.classList.add("movie-card");
@@ -93,7 +88,7 @@ function addToFavorites(movie) {
     favoriteMovies.push(movie);
     localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
   }
-// in movieDesc.html the detailed movie details are rendered from here
+
 function renderMovieDetails(movie) {
   const movieDetailsContainer = document.getElementById("movieDetails");
   movieDetailsContainer.innerHTML = "";
