@@ -1,11 +1,10 @@
 let favoriteMovies = [];
 
 
-// // Check if the current page is favmovie.html and render favorite movies
-// if (window.location.pathname === '/favmovie.html') {
-//     renderFavoriteMovies();
-//   }
-
+// Check if the current page is favmovie.html and render favorite movies
+if (window.location.pathname.includes('/favmovie.html')) {
+  renderFavoriteMovies();
+}
 function performSearch() {
   const apiKey = "6dd38eca";
   const movieTitle = document.getElementById("searchInput").value.trim();
