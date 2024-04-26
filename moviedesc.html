@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>IMDB Clone Movie Description</title>
+</head>
+
+<body>
+    <header>
+        <div id="header-logo"><img src="https://seeklogo.com/images/I/imdb-logo-1CD1CCD432-seeklogo.com.png"
+                width="100%" height="40px" alt=""></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="favmovie.html">Favorite Movies</a>
+        </nav>
+    </header>
+    <div id="movieBackGround">
+    </div>
+    <!-- complte movie details here  -->
+    <div id="movieDetails">
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+        // calling function on windows.load() if the page gets loaded, it called takes the parameter and receives response.
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const imdbID = urlParams.get('imdbID');
+
+            if (imdbID) {
+                const apiKey = 'yourApiKey';
+
+                fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=6dd38eca`)
+                    .then(response => response.json())
+                    .then(movie => {
+                        renderMovieDetails(movie);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching movie details:', error);
+                    });
+            } else {
+                console.error('IMDb ID not found in query parameter.');
+            }
+        };
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
