@@ -1,13 +1,11 @@
 let favoriteMovies = [];
 
-if (window.location.pathname === "https://luckyandeee.github.io/imdbclone/") {
   document
     .getElementById("searchGroup")
     .addEventListener("submit", function (event) {
       event.preventDefault();
       performSearch();
     });
-}
 // Check if the current page is favmovie.html and render favorite movies
 if (window.location.pathname === 'https://luckyandeee.github.io/imdbclone/favmovie.html') {
     renderFavoriteMovies();
