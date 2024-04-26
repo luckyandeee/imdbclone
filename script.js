@@ -1,6 +1,6 @@
 let favoriteMovies = [];
 
-if (window.location.pathname === "https://luckyandeee.github.io/imdbclone/index.html") {
+if (window.location.pathname === "https://luckyandeee.github.io/imdbclone/") {
   document
     .getElementById("searchGroup")
     .addEventListener("submit", function (event) {
