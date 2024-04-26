@@ -35,7 +35,7 @@
             if (imdbID) {
                 const apiKey = 'yourApiKey';
 
-                fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=6dd38eca`)
+                fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=6dd38eca`)
                     .then(response => response.json())
                     .then(movie => {
                         renderMovieDetails(movie);
