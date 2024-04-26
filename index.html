@@ -28,11 +28,19 @@
         </div>
     </div>
 
-<!-- result list -->
-        <div id="moviesList"></div>
+    <!-- result list -->
+    <div id="moviesList"></div>
 
 
     <!-- JavaScript -->
+    <script>
+        document
+            .getElementById("searchGroup")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+                performSearch();
+            });
+    </script>
     <script src="script.js"></script>
 </body>
 

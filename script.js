@@ -1,13 +1,8 @@
 let favoriteMovies = [];
 
-  document
-    .getElementById("searchGroup")
-    .addEventListener("submit", function (event) {
-      event.preventDefault();
-      performSearch();
-    });
+
 // Check if the current page is favmovie.html and render favorite movies
-if (window.location.pathname === 'https://luckyandeee.github.io/imdbclone/favmovie.html') {
+if (window.location.pathname === '/favmovie.html') {
     renderFavoriteMovies();
   }
 
@@ -83,9 +78,12 @@ function createMovieCard(movie) {
 
 // Add movie to favorites
 function addToFavorites(movie) {
-    favoriteMovies.push(movie);
-    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
+  const existingIndex = favoriteMovies.findIndex(item => item.imdbID === movie.imdbID);
+  if (existingIndex === -1) {
+      favoriteMovies.push(movie);
+      localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
   }
+}
 
 function renderMovieDetails(movie) {
   const movieDetailsContainer = document.getElementById("movieDetails");
